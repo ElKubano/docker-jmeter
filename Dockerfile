@@ -4,7 +4,7 @@ FROM alpine:3.12
 
 MAINTAINER Just van den Broecke<just@justobjects.nl>
 
-ARG JMETER_VERSION="5.5"
+ARG JMETER_VERSION="5.6.3"
 ENV JMETER_HOME /opt/apache-jmeter-${JMETER_VERSION}
 ENV JMETER_CUSTOM_PLUGINS_FOLDER /plugins
 ENV	JMETER_BIN	${JMETER_HOME}/bin
@@ -16,6 +16,8 @@ ARG TZ="Europe/Amsterdam"
 ENV TZ ${TZ}
 RUN    apk update \
 	&& apk upgrade \
+	&& apk add mailcap \
+	&& apk add xdg-utils \
 	&& apk add ca-certificates \
 	&& update-ca-certificates \
 	&& apk add --update openjdk8-jre tzdata curl unzip bash \
